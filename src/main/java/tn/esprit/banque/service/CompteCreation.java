@@ -2,11 +2,13 @@ package tn.esprit.banque.service;
 
 import java.math.BigDecimal;
 
+import org.springframework.stereotype.Service;
+
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
-
+@Service
 public class CompteCreation {
 	
 	@DecimalMin(value = "0.0",message = "Veuillez specifier un solde superieure ou egale à zero")

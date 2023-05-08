@@ -15,11 +15,9 @@ import tn.esprit.banque.repository.CompteRepository;
 
 @Service
 public class CompteContratImpl implements CompteContrat {
+	
+	@Autowired
 	private CompteRepository compteRepo;
-	    @Autowired
-	    public void setCompteRepo(CompteRepository compteRepo) {
-	        this.compteRepo = compteRepo;
-	    }
 
 	@Transactional
 	@Override

@@ -2,7 +2,7 @@ package tn.esprit.banque.service;
 
 import java.util.List;
 
-import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Service;
 
 import tn.esprit.banque.exceptions.InvalidAccountException;
 import tn.esprit.banque.exceptions.InvalidAdminDeletionException;

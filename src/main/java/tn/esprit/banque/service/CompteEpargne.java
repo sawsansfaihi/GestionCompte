@@ -1,6 +1,7 @@
 package tn.esprit.banque.service;
 
 import java.util.Date;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -41,13 +42,13 @@ public abstract class CompteEpargne extends CompteAbstraction {
 
         HttpEntity<String> entity = new HttpEntity<>(headers);
 
-       // ResponseEntity<Utilisateur> response = restTemplate.exchange(utilisateurUrl, HttpMethod.GET, entity, Utilisateur.class);
-       // Utilisateur utilisateur = response.getBody();
+       ResponseEntity<Map> response = restTemplate.exchange(utilisateurUrl, HttpMethod.GET, entity, Map.class);
+       Map utilisateur = response.getBody();
 
       
         compte.setDateCreation(new Date());
         compte.setEtatCompte(true);
-        //compte.setUtilisateur(utilisateur);
+        compte.setUtilisateur((String) utilisateur.get("nom"));
         TypeCompte typeCompte = Compte.TypeCompte.EPARGNE;
         compte.setTypeCompte(typeCompte);
 

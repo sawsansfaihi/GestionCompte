@@ -2,6 +2,7 @@ package tn.esprit.banque.service;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -34,12 +35,12 @@ public abstract class CompteCourant extends CompteAbstraction {
 		HttpHeaders headers = new HttpHeaders();
 		HttpEntity<String> entity = new HttpEntity<>(headers);
 
-		//ResponseEntity<Utilisateur> response = restTemplate.exchange(UTILISATEUR_URL, HttpMethod.GET, entity,Utilisateur.class);
-		//Utilisateur utilisateur = response.getBody();
+		ResponseEntity<Map> response = restTemplate.exchange(UTILISATEUR_URL, HttpMethod.GET, entity,Map.class);
+	    Map utilisateur = response.getBody();
 
 		compte.setDateCreation(new Date());
 		compte.setEtatCompte(true);
-		//compte.setUtilisateur(utilisateur);
+		compte.setUtilisateur((String) utilisateur.get("nom"));
 		TypeCompte typeCompte = Compte.TypeCompte.COURANT;
 		compte.setTypeCompte(typeCompte);
 

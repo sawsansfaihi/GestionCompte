@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import jakarta.validation.Valid;
@@ -37,11 +38,12 @@ import tn.esprit.banque.service.CompteCourant;
 import tn.esprit.banque.service.CompteCreation;
 import tn.esprit.banque.service.CompteEpargne;
 
-@Controller
+@RestController
 public class CompteController {
 
 	@Autowired
 	private CompteContrat compteContrat;
+	
 	@Autowired
 	private CompteRepository CompteRepo;
 
@@ -73,8 +75,8 @@ public class CompteController {
 			HttpHeaders headers = new HttpHeaders();
 			headers.set("Authorization", "Bearer ");
 			HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
-			//ResponseEntity<Utilisateur> userResponse = restTemplate.exchange("http://localhost:8080/api/users/me", HttpMethod.GET, entity, Utilisateur.class);
-			//Utilisateur utilisateur = userResponse.getBody();
+			ResponseEntity<Map> userResponse = restTemplate.exchange("http://localhost:8080/api/users/me", HttpMethod.GET, entity, Map.class);
+			Map utilisateur = userResponse.getBody();
 			switch (cmpt.getTypecompte()) {
 			case "COURANT":
 				return new ResponseEntity<>(ct.createAccount(compte, "user1"), HttpStatus.OK);

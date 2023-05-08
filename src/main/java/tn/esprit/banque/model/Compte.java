@@ -3,22 +3,22 @@ package tn.esprit.banque.model;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import org.springframework.data.annotation.Id;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.Data;
 
-@Data
+@Entity
 public class Compte {
 	public enum TypeCompte {
 		EPARGNE, COURANT;
@@ -143,5 +143,10 @@ public class Compte {
 		return "Compte{" + "numeroCompte=" + numeroCompte + ", etatCompte=" + etatCompte + ", dateCreation="
 				+ dateCreation + ", soldeCompte=" + soldeCompte + ", motDePasse='" + motDePasse + '\'' + ", typeCompte="
 				+ typeCompte + '}';
+	}
+
+	public void setUtilisateur(String string) {
+		// TODO Auto-generated method stub
+		
 	}
 }
