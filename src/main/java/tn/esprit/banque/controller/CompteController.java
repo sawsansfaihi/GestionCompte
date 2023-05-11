@@ -10,7 +10,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -56,7 +55,6 @@ public class CompteController {
 	private RestTemplate restTemplate;
 
 	@PostMapping(value = "/AccountCreation", produces = "application/json", consumes = "application/json")
-	@Secured({ "ROLE_ADMIN" })
 	public ResponseEntity<Object> creationCompte(@Valid @RequestBody CompteCreation cmpt, BindingResult bindingResult) {
 		Compte compte = new Compte();
 		try {
@@ -118,7 +116,6 @@ public class CompteController {
 	}
 
 	@PostMapping(value = "/deleteAccount", consumes = "application/json", produces = "application/json")
-	@Secured({ "ROLE_ADMIN" })
 	public ResponseEntity<Object> supprimerLeCompte(@Valid @RequestBody Compte compte, BindingResult bindingResult) {
 
 		try {
